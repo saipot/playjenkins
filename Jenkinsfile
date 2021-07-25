@@ -1,8 +1,9 @@
 pipeline {
 
   environment {
-    registry = "192.168.1.81:5000/justme/myweb"
-    dockerImage = ""
+     imagename = "saipot/playjenkins"
+     registryCredential = 'docker'
+     dockerImage = ''
   }
 
   agent any
@@ -18,7 +19,7 @@ pipeline {
     stage('Build image') {
       steps{
         script {
-          dockerImage = docker.build registry + ":$BUILD_NUMBER"
+          dockerImage = docker.build imagename + ":$BUILD_NUMBER"
         }
       }
     }
@@ -26,8 +27,8 @@ pipeline {
     stage('Push Image') {
       steps{
         script {
-          docker.withRegistry( "" ) {
-            dockerImage.push()
+          docker.withRegistry( "" , registryCredential) {
+            dockerImage.push('latest')
           }
         }
       }

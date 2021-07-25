@@ -1,7 +1,7 @@
 pipeline {
 
   environment {
-     imagename = "saipot/playjenkins"
+     imagename = "playjenkins"
      registryCredential = 'docker'
      dockerImage = ''
   }

@@ -16,7 +16,7 @@ spec:
         app: myweb
     spec:
       containers:
-      - image: playjenkins:latest
+      - image: saipot/playjenkins:latest
         imagePullPolicy: Always
         name: myweb
 
